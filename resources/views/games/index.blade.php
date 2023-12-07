@@ -1,21 +1,14 @@
-@extends('layouts.app')
-
-@section('content')
-    <h2>Match Details</h2>
-    <ul>
-        <li>Format: {{ $game->format }}</li>
-        <li>Teams:
-            <ul>
-                @foreach ($game->teams as $team)
-                    <li>{{ $team->name }}</li>
-                @endforeach
-            </ul>
-        </li>
-        <li>Goals:</li>
-        @foreach ($game->goals as $goal)
-            <li>
-                {{ $goal->player->name }}: {{ $goal->goals }} goals
-            </li>
-        @endforeach
-    </ul>
-@endsection
+<x-app-layout>
+    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+        <form method="POST" action="{{ route('games.store') }}">
+            @csrf
+            <textarea
+                name="message"
+                placeholder="{{ __('Let`s begin!') }}"
+                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+            >{{ old('message') }}</textarea>
+            <x-input-error :messages="$errors->get('message')" class="mt-2" />
+            <x-primary-button class="mt-4">{{ __('Add') }}</x-primary-button>
+        </form>
+    </div>
+</x-app-layout>

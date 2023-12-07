@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use App\Models\Game;
 use App\Models\Team;
 use Illuminate\Http\Request;
@@ -12,8 +13,7 @@ class GameController extends Controller
 
     public function index()
     {
-        $games = Game::with('teams')->latest()->get();
-        return view('games.index', compact('games'));
+        return view('games.index');
     }
 
     public function create()
@@ -22,7 +22,7 @@ class GameController extends Controller
         return view('games.create', compact('teams'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request):RedirectResponse
     {
         $this->validate($request, [
             'format' => 'required|in:gold,silver,bronze',
@@ -30,7 +30,7 @@ class GameController extends Controller
         ]);
 
         $game = Game::create([
-           // 'format' => $request->format,
+            'format' => $request->format,
             'teams' => json_encode($request->teams),
         ]);
 

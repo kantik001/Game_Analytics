@@ -9,6 +9,8 @@ class Goal extends Model
 {
     use HasFactory;
 
+    protected $guarded = false;
+
     public function game()
     {
         return $this->belongsTo(Game::class);
