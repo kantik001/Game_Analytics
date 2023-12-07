@@ -41,13 +41,13 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
-$app->singleton(\App\Models\PointsCalculator::class);
+/*$app->singleton(\App\Models\PointsCalculator::class);
 
 \Illuminate\Support\Facades\App::bind('PointsCalculator', function ($app) {
     return new \App\Models\PointsCalculator();
 });
 
-\Illuminate\Support\Facades\App::make('PointsCalculator');
+\Illuminate\Support\Facades\App::make('PointsCalculator');*/
 
 /*
 |--------------------------------------------------------------------------
