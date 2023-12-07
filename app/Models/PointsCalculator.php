@@ -4,11 +4,11 @@ namespace App\Models;
 
 class PointsCalculator
 {
-    public function calculatePoints(Game $match): int
+    public function calculatePoints(Game $game): int
     {
         $points = 0;
 
-        switch ($match->format) {
+        switch ($game->format) {
             case 'gold':
                 $points += 3;
                 break;
@@ -20,7 +20,7 @@ class PointsCalculator
                 break;
         }
 
-        foreach ($match->goals as $player_id => $goals) {
+        foreach ($game->goals as $player_id => $goals) {
             $points += $goals;
         }
 

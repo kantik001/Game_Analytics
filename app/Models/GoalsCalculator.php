@@ -4,15 +4,15 @@ namespace App\Models;
 
 class GoalsCalculator
 {
-    public function calculatePoints(Game $match): int
+    public function calculatePoints(Game $game): int
     {
-        foreach ($match as $goal) {
-            $match = Game::find($goal['match_id']);
+        foreach ($game as $goal) {
+            $game = Game::find($goal['game_id']);
             $player = Player::find($goal['player_id']);
 
-            if ($match && $player) {
+            if ($game && $player) {
                 Goal::create([
-                    'match_id' => $goal['match_id'],
+                    'game_id' => $goal['game_id'],
                     'player_id' => $goal['player_id'],
                     'goals' => $goal['goals'],
                 ]);

@@ -8,10 +8,7 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     public function index()
     {
@@ -33,7 +30,7 @@ class GameController extends Controller
         ]);
 
         $game = Game::create([
-            'format' => $request->format,
+           // 'format' => $request->format,
             'teams' => json_encode($request->teams),
         ]);
 
@@ -51,15 +48,15 @@ class GameController extends Controller
         return view('games.edit', compact('game', 'teams'));
     }
 
-    public function update(Request $request, Game $match)
+    public function update(Request $request, Game $game)
     {
         $this->validate($request, [
             'format' => 'required|in:gold,silver,bronze',
             'teams' => 'required|array|min:2',
         ]);
 
-        $match->update([
-            'format' => $request->format,
+        $game->update([
+            //'format' => $request->format,
             'teams' => json_encode($request->teams),
         ]);
 

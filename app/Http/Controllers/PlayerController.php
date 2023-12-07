@@ -21,7 +21,7 @@ class PlayerController extends Controller
 
     public function show(Player $player)
     {
-        $matches = $player->games;
+        $games = $player->games;
         return view('players.show', compact('player', 'games'));
     }
 

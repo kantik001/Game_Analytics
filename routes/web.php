@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('/games', \App\Http\Controllers\GameController::class);
+Route::resource('/players', \App\Http\Controllers\PlayerController::class);
+Route::resource('/teams', \App\Http\Controllers\TeamController::class);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
